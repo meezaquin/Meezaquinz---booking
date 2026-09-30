@@ -64,7 +64,7 @@ input[type=date]{min-width:0;-webkit-appearance:none;appearance:none;height:50px
 <body>
 <main>
   <h1>MEEZAQUINZ</h1>
-  <p class="sub">Lagos Bridal &amp; Aso-Ebi Designer | Custom • Ready-to-Wear • Modern Aso-Oke</p>
+  <p class="sub">Lagos Bridal &amp; Aso-Ebi Designer | Custom • Ready-to-Wear • Traditional &amp; Reception Outfits</p>
   <a class="btn gold" id="top" data-msg="Hello Meezaquinz ✨ I'd love to book a consultation." href="https://wa.me/2347049663826" target="_blank" rel="noopener">Book on WhatsApp</a>
 
   <section class="hero">
@@ -81,6 +81,7 @@ input[type=date]{min-width:0;-webkit-appearance:none;appearance:none;height:50px
     <p class="price">Starting from N450,000</p>
     <p>Includes: Consultation, Fabric sourcing, 2 Fittings, Finishing &amp; Packaging</p>
     <p>Timeline: 6-8 weeks (Rush: 3-4 weeks with fee)</p>
+    <p>Consultation fee: N50,000 (deductible)</p>
     <a class="btn" href="#form" data-svc="The Bride">Book Bridal Consultation</a>
   </div>
   <div class="svc">
@@ -90,22 +91,24 @@ input[type=date]{min-width:0;-webkit-appearance:none;appearance:none;height:50px
     <p class="price">From N150,000 per piece (Bridesmaid dress)</p>
     <p>Includes: One style for all, Size chart, Bulk discount from 10 pieces. Prices are subject to change depending on style.</p>
     <p>Timeline: 4-6 weeks</p>
+    <p>Consultation fee: N20,000 (deductible)</p>
     <a class="btn" href="#form" data-svc="Aso-Ebi Squad">Book bridesmaid outfits</a>
   </div>
   <div class="svc">
-    <h3>OWAMBE GUEST</h3>
+    <h3>PARTY GUEST</h3>
     <p class="for">Custom Guest Look. You don't want to blend in. You want to stand out.</p>
     <p class="price">Starting from N180,000</p>
     <p>Includes: Consultation, Styling advice, Fitting.</p>
     <p>Timeline: 3-4 weeks</p>
-    <a class="btn" href="#form" data-svc="Owambe Guest">Book Guest Look</a>
+    <p>Consultation fee: N10,000 (deductible)</p>
+    <a class="btn" href="#form" data-svc="Party Guest">Book Guest Look</a>
   </div>
 
   <section class="block">
     <h2 class="sec">How It Works</h2>
     <ol>
       <li>Fill the booking form below</li>
-      <li>Pay consultation fee (N10,000, deductible from final price)</li>
+      <li>Pay your consultation fee, deductible from your final price (The Bride N50,000 | Aso-Ebi Squad N20,000 | Party Guest N10,000)</li>
       <li>We confirm fabric + measurements</li>
       <li>Production starts after 70% deposit</li>
     </ol>
@@ -120,8 +123,9 @@ input[type=date]{min-width:0;-webkit-appearance:none;appearance:none;height:50px
       <label for="s">Service</label>
       <select id="s" required>
         <option value="">Choose a service</option>
-        <option>The Bride</option><option>Aso-Ebi Squad</option><option>Owambe Guest</option>
+        <option>The Bride</option><option>Aso-Ebi Squad</option><option>Party Guest</option>
       </select>
+      <p class="note" id="fee" hidden></p>
       <div id="pp" hidden><label for="p">Number of people (for Aso-Ebi)</label><input id="p" type="number" min="5" inputmode="numeric"></div>
       <label for="b">Budget range</label><input id="b" placeholder="Your budget range">
       <label for="l">Delivery location</label><input id="l" required>
@@ -135,7 +139,7 @@ input[type=date]{min-width:0;-webkit-appearance:none;appearance:none;height:50px
   <section class="policy">
     <h2>Policy Box - Read before booking</h2>
     <ul>
-      <li>Consultation fee: N10,000 (deductible).</li>
+      <li>Consultation fee (deductible): The Bride N50,000 | Aso-Ebi Squad N20,000 | Party Guest N10,000.</li>
       <li>Deposit: 70% to start production, 30% before delivery. Deposit is non-refundable.</li>
       <li>Rush jobs: +30% for jobs under 3 weeks.</li>
       <li>One free revision. Extra revisions attract fee.</li>
@@ -159,8 +163,9 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){var hv=documen
 var NUM='2347049663826',F=document.getElementById('f');
 function wa(m){return 'https://wa.me/'+NUM+'?text='+encodeURIComponent(m)}
 var top_=document.getElementById('top');top_.href=wa(top_.getAttribute('data-msg'));
-var BR={'The Bride':'N450,000 to N1,500,000','Aso-Ebi Squad':'N150,000 to N300,000 per piece','Owambe Guest':'N180,000 to N350,000'};
-function tog(){var s=document.getElementById('s').value;document.getElementById('pp').hidden=s!=='Aso-Ebi Squad';document.getElementById('b').placeholder=BR[s]?'e.g. '+BR[s]:'Your budget range'}
+var FEE={'The Bride':'N50,000','Aso-Ebi Squad':'N20,000','Party Guest':'N10,000'};
+var BR={'The Bride':'N450,000 to N1,500,000','Aso-Ebi Squad':'N150,000 to N300,000 per piece','Party Guest':'N180,000 to N350,000'};
+function tog(){var s=document.getElementById('s').value;document.getElementById('pp').hidden=s!=='Aso-Ebi Squad';document.getElementById('b').placeholder=BR[s]?'e.g. '+BR[s]:'Your budget range';var f=document.getElementById('fee');f.hidden=!FEE[s];if(FEE[s])f.textContent='Consultation fee for this service: '+FEE[s]+' (deductible from your final price).'}
 document.getElementById('s').addEventListener('change',tog);
 document.querySelectorAll('[data-svc]').forEach(function(a){a.addEventListener('click',function(){document.getElementById('s').value=a.getAttribute('data-svc');tog()})});
 function v(i){return document.getElementById(i).value.trim()}
